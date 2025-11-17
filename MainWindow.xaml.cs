@@ -379,7 +379,7 @@ namespace SteamHack
 
         // ---------------------------------------------------------------------
         // SECTION 4: CLASSES DE DONNÉES INTERNES
-        //test1
+        //test2
         // ---------------------------------------------------------------------
 
         // Classe interne pour la sérialisation des données d'un jeu
