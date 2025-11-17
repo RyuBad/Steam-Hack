@@ -15,6 +15,7 @@
     <None Remove="img\banner\undertale.ico" />
     <None Remove="img\icon\elden_ring.ico" />
     <None Remove="img\icon\undertale.ico" />
+    <None Remove="Musique\1.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="img\icon\undertale.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Musique\1.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -9,15 +9,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
         <Border Grid.Row="0" Background="#282828" Height="30" VerticalAlignment="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Steam Hack" Foreground="White" VerticalAlignment="Center" Margin="10,0,505,0"/>
-                <Button Content="Demande d'ajout" Click="AddGame" Height="22" Margin="93,4,459,4">
+                <TextBlock Grid.Column="0" Text="Steam Hack" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                <Button Content="Demande d'ajout" Click="AddGame" Height="22" Margin="100,4,0,4" HorizontalAlignment="Left">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" 
@@ -29,27 +29,24 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="Ajouter ton jeu (.exe)" Margin="5" Click="Addexe"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- Main Content -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Left Side: Search and Games List -->
             <StackPanel Grid.Column="0" Background="#3C3C3C" Width="200">
-                <!-- Search Box -->
-                <TextBox Text="Rechercher un jeu..." Margin="5"
+                <TextBox Text="Rechercher un jeu..." Name="SearchTextBox" Margin="5"
                          GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"
                          TextChanged="TextBox_TextChanged"/>
 
-                <!-- List of Games -->
                 <ListBox Name="GameList" ItemsSource="{Binding JeuxFiltrés}" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -62,16 +59,17 @@
                 </ListBox>
             </StackPanel>
 
-            <!-- Right Side: Game Banner & Actions -->
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <!-- Bannière du jeu -->
                 <Image Name="GameBanner" Height="146" Visibility="Collapsed" Stretch="Fill"/>
 
-                <!-- Bouton Jouer -->
-                <Button Name="PlayButton" Content="Jouer" Height="29" Width="120"
-                        Visibility="Collapsed" Click="PlayButton1" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0, 10, 0, 0">
+                    <Button Name="PlayButton" Content="Jouer" Height="29" Width="120"
+                            Visibility="Collapsed" Click="PlayButton1" Margin="0,0,10,0"/>
 
-                <!-- Texte cliquable pour sélectionner le .exe -->
+                    <Button Name="DeleteButton" Content="Supprimer le jeu" Height="29" Width="120"
+                            Visibility="Collapsed" Click="DeleteGameButton_Click"/>
+                </StackPanel>
+
                 <TextBlock Name="SelectExeText" Text="Le jeu est-il déjà installé ?" Foreground="Blue" Margin="10" HorizontalAlignment="Left" Cursor="Hand" Visibility="Collapsed" MouseDown="SetGameExePath_Click"/>
             </StackPanel>
         </Grid>
