@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Steam Hack", "Steam Hack.csproj", "{1A8E9B88-6248-49F8-A519-3C3187EE23A1}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SHsetup", "..\SHsetup\SHsetup.vdproj", "{2E5BB0AB-BF51-6B7D-5AD7-29B1A116F512}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A8E9B88-6248-49F8-A519-3C3187EE23A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A8E9B88-6248-49F8-A519-3C3187EE23A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A8E9B88-6248-49F8-A519-3C3187EE23A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5BB0AB-BF51-6B7D-5AD7-29B1A116F512}.Debug|Any CPU.ActiveCfg = Debug
+		{2E5BB0AB-BF51-6B7D-5AD7-29B1A116F512}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10184D3B-D851-47C3-940D-B28FEA68C092}
+	EndGlobalSection
+EndGlobal
