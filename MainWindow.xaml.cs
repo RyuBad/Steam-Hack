@@ -215,21 +215,31 @@ namespace SteamHack
         private void PlayBackgroundMusic()
         {
             string musicDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Musique");
-            string filePath = Path.Combine(musicDirectory, "1.mp3");
 
-            if (File.Exists(filePath))
+            // 1. Récupérer tous les fichiers .mp3 dans le répertoire
+            string[] musicFiles = Directory.GetFiles(musicDirectory, "*.mp3");
+
+            if (musicFiles.Length > 0)
             {
+                // 2. Choisir un fichier aléatoire dans la liste
+                Random random = new Random();
+                int randomIndex = random.Next(musicFiles.Length);
+                string filePath = musicFiles[randomIndex]; // Sélectionne le chemin du fichier
+
+                // 3. Lire le fichier sélectionné
                 try
                 {
                     Uri fileUri = new Uri(filePath, UriKind.Absolute);
                     player.Open(fileUri);
-                    player.Volume = 0.15; // Volume réduit pour le fond
 
-                    // Boucle : remet la position à zéro et rejoue à la fin
+                    // Utiliser le volume du Slider, s'il est initialisé, sinon valeur par défaut.
+                    player.Volume = (VolumeSlider != null) ? VolumeSlider.Value : 0.15;
+
                     player.MediaEnded += (s, e) =>
                     {
-                        player.Position = TimeSpan.Zero;
-                        player.Play();
+                        // Pour jouer une autre musique au pif après la fin de la précédente
+                        // Nous rappelons la méthode PlayBackgroundMusic() elle-même.
+                        PlayBackgroundMusic();
                     };
 
                     player.Play();
@@ -238,6 +248,40 @@ namespace SteamHack
                 {
                     MessageBox.Show($"Erreur lors de la lecture de la musique : {ex.Message}", "Erreur Média", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+            else
+            {
+                // Gérer le cas où aucun fichier n'est trouvé
+                MessageBox.Show("Aucun fichier .mp3 trouvé dans le dossier Musique.", "Alerte Média", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void PauseMusic_Click(object sender, RoutedEventArgs e)
+        {
+            player.Pause();
+        }
+
+
+        private void PlayMusic_Click(object sender, RoutedEventArgs e)
+        {
+            // Vérifie si le fichier est ouvert avant de lancer
+            if (player.Source == null)
+            {
+                PlayBackgroundMusic();
+            }
+
+            else
+            {
+                player.Play();
+            }
+        }
+
+
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (player != null)
+            {
+                player.Volume = VolumeSlider.Value;
             }
         }
 

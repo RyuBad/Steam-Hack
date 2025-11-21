@@ -17,7 +17,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Steam Hack" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0"/>
 
-                <Button Content="Demande d'ajout" Click="AddGame" Height="22" Margin="100,4,0,4" HorizontalAlignment="Left">
+                <Button Content="Demande d'ajout" Click="AddGame" Height="22" Margin="100,4,0,4" HorizontalAlignment="Left" Width="106">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" 
@@ -37,17 +37,25 @@
         </Border>
 
         <Grid Grid.Row="1">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="#3C3C3C" Width="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0" Background="#3C3C3C" Width="200">
                 <TextBox Text="Rechercher un jeu..." Name="SearchTextBox" Margin="5"
+                         Grid.Row="0"
                          GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"
                          TextChanged="TextBox_TextChanged"/>
 
-                <ListBox Name="GameList" ItemsSource="{Binding JeuxFiltrés}" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox Name="GameList" ItemsSource="{Binding JeuxFiltrés}" SelectionChanged="ListBox_SelectionChanged"
+                         Grid.Row="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -57,7 +65,19 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </StackPanel>
+
+                <StackPanel Grid.Row="2" Margin="5" Orientation="Vertical">
+                    <TextBlock Text="Contrôles Audio" Foreground="White" Margin="0,5,0,5"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                        <Button Content="Pause" Width="70" Margin="0,0,5,0" Click="PauseMusic_Click"/>
+                        <Button Content="Play" Width="70" Click="PlayMusic_Click"/>
+                    </StackPanel>
+                    <TextBlock Text="Volume" Foreground="#CCCCCC"/>
+                    <Slider Name="VolumeSlider" Minimum="0" Maximum="1" Value="0.15" 
+                            SmallChange="0.05" LargeChange="0.1" 
+                            ValueChanged="VolumeSlider_ValueChanged" />
+                </StackPanel>
+            </Grid>
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Image Name="GameBanner" Height="146" Visibility="Collapsed" Stretch="Fill"/>
